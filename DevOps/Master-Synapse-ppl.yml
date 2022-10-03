@@ -1,0 +1,19 @@
+name: Pipeline-ForSynapse-$(Build.DefinitionName)-$(Date:yyyyMMdd)$(Rev:.r)
+
+pr: none
+trigger: none
+
+pool: 'Azure Pipelines'
+
+variables:
+- template: ..\Variables\Variables-Global.yml
+
+stages:
+
+- template: Stage-Environment.yml
+  parameters:
+          ServiceConnection: ${{ variables.serviceConnection }}
+          Environment: 'Test'
+          Location: ${{ variables.Location }}
+
+## other stages below

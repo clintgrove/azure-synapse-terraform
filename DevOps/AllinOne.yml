@@ -3,6 +3,9 @@ pool:
 #Your build pipeline references an undefined variable named ‘synapseterraform-jumphost-password’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 #Your build pipeline references an undefined variable named ‘synapseterraform-synadmin-password’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 
+  variables:
+    - group: Test-vars
+    
 steps:
 
 - task: TerraformInstaller@0
@@ -16,7 +19,7 @@ steps:
               --tenant "16b3c013-d300-468d-ac64-7eda0820b6d3"'
   displayName: 'Azure Service Principal Login'
   
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+- task: TerraformTaskV3@3
   displayName: 'Terraform : init'
   inputs:
     workingDirectory: 'Synapse_tf_modules'
@@ -26,7 +29,7 @@ steps:
     backendAzureRmContainerName: 'tfstate-syn'
     backendAzureRmKey: terraform.tfstate
 
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+- task: TerraformTaskV3@3
   displayName: 'Terraform : plan'
   inputs:
     command: plan
@@ -38,7 +41,7 @@ steps:
     backendAzureRmContainerName: 'tfstate-syn'
     backendAzureRmKey: terraform.tfstate
 
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+- task: TerraformTaskV3@3
   displayName: 'Terraform : apply'
   inputs:
     command: apply

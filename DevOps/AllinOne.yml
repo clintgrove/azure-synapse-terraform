@@ -14,8 +14,8 @@ steps:
 # this powershell login is needed if you want to use the data external me in the main.tf
 - powershell: 'az login                                                
               --service-principal                                        
-              -u ${{ parameters.clintazrealappid }}    
-              -p ${{ parameters.clintazrealsecret }}                 
+              -u ${clintazreal-appid}    
+              -p ${clintazreal-secret}                 
               --tenant "16b3c013-d300-468d-ac64-7eda0820b6d3"'
   displayName: 'Azure Service Principal Login'
   

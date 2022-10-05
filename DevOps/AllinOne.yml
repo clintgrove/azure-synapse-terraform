@@ -1,0 +1,52 @@
+pool:
+  name: Azure Pipelines
+#Your build pipeline references an undefined variable named ‘synapseterraform-jumphost-password’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘synapseterraform-synadmin-password’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+steps:
+
+- task: TerraformInstaller@0
+  displayName: Install Terraform latest
+#- script: echo This is the resource group that has been passed in ${{ parameters.ResourceGroupName }} and service connection is  ${{ parameters.ServiceConnection }}
+# this powershell login is needed if you want to use the data external me in the main.tf
+- powershell: 'az login                                                
+              --service-principal                                        
+              -u ${{ parameters.clintazrealappid }}    
+              -p ${{ parameters.clintazrealsecret }}                 
+              --tenant "16b3c013-d300-468d-ac64-7eda0820b6d3"'
+  displayName: 'Azure Service Principal Login'
+  
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+  displayName: 'Terraform : init'
+  inputs:
+    workingDirectory: 'Synapse_tf_modules'
+    backendServiceArm: clintazrealallrgs
+    backendAzureRmResourceGroupName: NetworkWatcherRG
+    backendAzureRmStorageAccountName: testterrastate919
+    backendAzureRmContainerName: 'tfstate-syn'
+    backendAzureRmKey: terraform.tfstate
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+  displayName: 'Terraform : plan'
+  inputs:
+    command: plan
+    workingDirectory: 'Synapse_tf_modules'
+    environmentServiceNameAzureRM: clintazrealallrgs
+    backendServiceArm: clintazrealallrgs
+    backendAzureRmResourceGroupName: NetworkWatcherRG
+    backendAzureRmStorageAccountName: testterrastate919
+    backendAzureRmContainerName: 'tfstate-syn'
+    backendAzureRmKey: terraform.tfstate
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+  displayName: 'Terraform : apply'
+  inputs:
+    command: apply
+    workingDirectory: 'Synapse_tf_modules'
+    commandOptions: '-var jumphost_password=$(synapseterraform-jumphost-password) -var synadmin_password=$(synapseterraform-synadmin-password)'
+    environmentServiceNameAzureRM: clintazrealallrgs
+    backendServiceArm: clintazrealallrgs
+    backendAzureRmResourceGroupName: NetworkWatcherRG
+    backendAzureRmStorageAccountName: testterrastate919
+    backendAzureRmContainerName: 'tfstate-syn'
+    backendAzureRmKey: terraform.tfstate

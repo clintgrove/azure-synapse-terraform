@@ -38,7 +38,6 @@ variable "jumphost_username" {
 variable "jumphost_password" {
   type        = string
   description = "VM password"
-  default     = "ThisIsNotVerySecure!"
 }
 
 variable "synadmin_username" {
@@ -50,7 +49,6 @@ variable "synadmin_username" {
 variable "synadmin_password" {
   type        = string
   description = "The Password associated with the sql_administrator_login for the SQL administrator"
-  default     = "ThisIsNotVerySecure!"
 }
 
 variable "enable_syn_sqlpool" {

@@ -63,4 +63,5 @@ variable "enable_syn_sparkpool" {
 
 variable "resourcegroupname" {
   type = string
+  default = "lz-data-test-uks-rg-01"
 }

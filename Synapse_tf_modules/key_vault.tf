@@ -1,7 +1,7 @@
 module "key_vault" {
   source = "github.com/murggu/azure-terraform-modules/key-vault"
 
-  rg_name  = module.resource_group.name
+  rg_name  = var.resourcegroupname
   location = module.resource_group.location
 
   prefix  = var.prefix

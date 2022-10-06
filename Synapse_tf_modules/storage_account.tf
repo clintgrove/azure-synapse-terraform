@@ -1,7 +1,7 @@
 module "storage_account" {
   source = "github.com/murggu/azure-terraform-modules/storage-account"
 
-  rg_name  = module.resource_group.name
+  rg_name  = var.resourcegroupname
   location = module.resource_group.location
 
   prefix  = var.prefix
@@ -21,26 +21,26 @@ module "storage_account" {
 
 resource "azurerm_private_dns_zone" "st_zone_blob" {
   name                = "privatelink.blob.core.windows.net"
-  resource_group_name = module.resource_group.name
+  resource_group_name = var.resourcegroupname
 }
 
 resource "azurerm_private_dns_zone" "st_zone_dfs" {
   name                = "privatelink.dfs.core.windows.net"
-  resource_group_name = module.resource_group.name
+  resource_group_name = var.resourcegroupname
 }
 
 # Linking of DNS zones to Virtual Network
 
 resource "azurerm_private_dns_zone_virtual_network_link" "st_zone_blob_link" {
   name                  = "${random_string.postfix.result}_link_blob"
-  resource_group_name   = module.resource_group.name
+  resource_group_name   = var.resourcegroupname
   private_dns_zone_name = azurerm_private_dns_zone.st_zone_blob.name
   virtual_network_id    = module.virtual_network.id
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "st_zone_dfs_link" {
   name                  = "${random_string.postfix.result}_link_dfs"
-  resource_group_name   = module.resource_group.name
+  resource_group_name   = var.resourcegroupname
   private_dns_zone_name = azurerm_private_dns_zone.st_zone_dfs.name
   virtual_network_id    = module.virtual_network.id
 }

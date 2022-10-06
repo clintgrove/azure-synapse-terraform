@@ -60,3 +60,7 @@ variable "enable_syn_sparkpool" {
   description = "Variable to enable or disable Synapse Spark pool deployment"
   default     = false
 }
+
+variable "resourcegroupname" {
+  type = string
+}

@@ -30,7 +30,7 @@ steps:
     command: plan
     workingDirectory: 'Synapse_tf_modules'
     environmentServiceNameAzureRM: clintazrealallrgs
-    commandOptions: '-out=terraform.tfstate'
+    commandOptions: '-var-file=terraform.tfvars -out=terraform.tfstate'
 
 - task: TerraformTaskV3@3
   displayName: 'Terraform : apply'

@@ -17,6 +17,17 @@ module "storage_account" {
   private_dns_zone_ids_dfs            = [azurerm_private_dns_zone.st_zone_dfs.id]
 }
 
+################################################################
+# Adls File systems
+################################################################
+resource "azurerm_storage_data_lake_gen2_filesystem" "this" {
+  name               = "default"
+  storage_account_id = module.storage_account.id
+  depends_on = [
+    module.storage_account.this
+  ]
+}
+
 # DNS Zones
 
 resource "azurerm_private_dns_zone" "st_zone_blob" {

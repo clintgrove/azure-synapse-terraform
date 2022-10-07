@@ -4,5 +4,5 @@ module "resource_group" {
   location = var.location
 
   prefix  = var.prefix
-  postfix = "${environment}-uks-synp1"
+  postfix = var.environment+"-uks-synp1"
 }

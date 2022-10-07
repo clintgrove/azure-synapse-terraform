@@ -65,3 +65,8 @@ variable "resourcegroupname" {
   type = string
   default = "lz-data-test-uks-rg-01"
 }
+
+variable "environment" {
+  type = string
+  default = "test"
+}

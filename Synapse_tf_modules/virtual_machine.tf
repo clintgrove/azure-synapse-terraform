@@ -1,7 +1,7 @@
 module "jumphost" {
   source = "github.com/murggu/azure-terraform-modules/virtual-machine"
 
-  rg_name  = var.resourcegroupname
+  rg_name  = module.resource_group.name
   location = module.resource_group.location
 
   prefix  = var.prefix

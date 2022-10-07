@@ -4,5 +4,5 @@ module "resource_group" {
   location = var.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "${environment}-uks-synp1"
 }

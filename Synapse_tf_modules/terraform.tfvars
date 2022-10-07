@@ -1,6 +1,8 @@
 # Resource name prefix
 prefix = "syn"
 
+environment = "test"
+
 # Deployment location
 location = "UK South"
 

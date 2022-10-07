@@ -20,13 +20,13 @@ module "storage_account" {
 ################################################################
 # Adls File systems
 ################################################################
-resource "azurerm_storage_data_lake_gen2_filesystem" "this" {
-  name               = "default"
-  storage_account_id = module.storage_account.id
-  depends_on = [
-    module.storage_account.this
-  ]
-}
+#resource "azurerm_storage_data_lake_gen2_filesystem" "this" {
+#  name               = "default"
+#  storage_account_id = module.storage_account.id
+#  depends_on = [
+#    module.storage_account.this
+#  ]
+#}
 
 # DNS Zones
 

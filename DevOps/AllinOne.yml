@@ -14,30 +14,30 @@ steps:
 # this powershell login is needed if you want to use the data external me in the main.tf
 # - powershell: 'az login --service-principal -u ${clintazreal-appid} -p ${clintazreal-secret} --tenant fdpo.onmicrosoft.com'
   
-- task: TerraformTaskV3@3
+- task: TerraformTaskV2@2
   displayName: 'Terraform : init'
   inputs:
     workingDirectory: 'Synapse_tf_modules'
     backendServiceArm: clintazrealallrgs
     backendAzureRmResourceGroupName: NetworkWatcherRG
     backendAzureRmStorageAccountName: testterrastate919
-    backendAzureRmContainerName: 'tfstate-syn'
+    backendAzureRmContainerName: 'tfstate-syn2'
     backendAzureRmKey: terraform.tfstate
 
-- task: TerraformTaskV3@3
+- task: TerraformTaskV2@2
   displayName: 'Terraform : plan'
   inputs:
     command: plan
     workingDirectory: 'Synapse_tf_modules'
     environmentServiceNameAzureRM: clintazrealallrgs
     commandOptions: '-var-file=terraform.tfvars -out=terraform.tfstate'
-    backendServiceArm: clintazrealallrgs
-    backendAzureRmResourceGroupName: NetworkWatcherRG
-    backendAzureRmStorageAccountName: testterrastate919
-    backendAzureRmContainerName: 'tfstate-syn'
-    backendAzureRmKey: terraform.tfstate
+    #backendServiceArm: clintazrealallrgs
+    #backendAzureRmResourceGroupName: NetworkWatcherRG
+    #backendAzureRmStorageAccountName: testterrastate919
+    #backendAzureRmContainerName: 'tfstate-syn'
+    #backendAzureRmKey: terraform.tfstate
 
-- task: TerraformTaskV3@3
+- task: TerraformTaskV2@2
   displayName: 'Terraform : apply'
   inputs:
     command: apply

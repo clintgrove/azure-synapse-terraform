@@ -5,7 +5,7 @@ module "jumphost" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "clnzp2"
 
   subnet_id = azurerm_subnet.default_subnet.id
 

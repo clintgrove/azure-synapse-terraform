@@ -5,7 +5,7 @@ module "virtual_network" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "clnzp2"
 }
 
 # Subnet definition

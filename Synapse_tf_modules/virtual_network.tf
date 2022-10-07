@@ -11,7 +11,7 @@ module "virtual_network" {
 # Subnet definition
 
 resource "azurerm_subnet" "default_subnet" {
-  name                                           = "snet-${var.prefix}-${random_string.postfix.result}-default"
+  name                                           = "snet-syn-tf1-default"
   resource_group_name                            = var.resourcegroupname
   virtual_network_name                           = module.virtual_network.name
   address_prefixes                               = ["10.0.1.0/24"]

@@ -5,7 +5,7 @@ module "storage_account" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "test-stg1-tf1"
 
   vnet_id   = module.virtual_network.id
   subnet_id = azurerm_subnet.default_subnet.id
@@ -32,14 +32,14 @@ resource "azurerm_private_dns_zone" "st_zone_dfs" {
 # Linking of DNS zones to Virtual Network
 
 resource "azurerm_private_dns_zone_virtual_network_link" "st_zone_blob_link" {
-  name                  = "${random_string.postfix.result}_link_blob"
+  name                  = "test_pdns-tf1_link_blob"
   resource_group_name   = var.resourcegroupname
   private_dns_zone_name = azurerm_private_dns_zone.st_zone_blob.name
   virtual_network_id    = module.virtual_network.id
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "st_zone_dfs_link" {
-  name                  = "${random_string.postfix.result}_link_dfs"
+  name                  = "test_pdns-tf1_link_dfs"
   resource_group_name   = var.resourcegroupname
   private_dns_zone_name = azurerm_private_dns_zone.st_zone_dfs.name
   virtual_network_id    = module.virtual_network.id

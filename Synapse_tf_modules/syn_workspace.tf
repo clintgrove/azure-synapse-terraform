@@ -5,7 +5,7 @@ module "synapse_workspace" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "test-synwspace-tf1"
 
   vnet_id   = module.virtual_network.id
   subnet_id = azurerm_subnet.default_subnet.id

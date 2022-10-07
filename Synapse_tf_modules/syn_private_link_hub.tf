@@ -5,7 +5,7 @@ module "synapse_private_link_hub" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = random_string.postfix.result
+  postfix = "test-synpvtlink-tf1"
 
   subnet_id = azurerm_subnet.default_subnet.id
 }

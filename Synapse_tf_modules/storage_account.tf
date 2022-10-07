@@ -5,7 +5,7 @@ module "storage_account" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = "test-stg1-tf1"
+  postfix = "teststg1tf1"
 
   vnet_id   = module.virtual_network.id
   subnet_id = azurerm_subnet.default_subnet.id

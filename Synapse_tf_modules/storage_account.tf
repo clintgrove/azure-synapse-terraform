@@ -1,5 +1,5 @@
 module "storage_account" {
-  source = "github.com/murggu/azure-terraform-modules/storage-account"
+  source = "../storage-account"
 
   rg_name  = module.resource_group.name
   location = module.resource_group.location

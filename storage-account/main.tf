@@ -29,7 +29,7 @@ resource "azurerm_role_assignment" "st_role_admin_sbdc" {
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "st_adls" {
-  name               = "default2"
+  name               = "default"
   storage_account_id = azurerm_storage_account.syn_st.id
 
   depends_on = [

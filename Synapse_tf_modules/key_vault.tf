@@ -5,7 +5,7 @@ module "key_vault" {
   location = module.resource_group.location
 
   prefix  = var.prefix
-  postfix = "kv1testtf"
+  postfix = "test-tf-2"
 
   vnet_id   = module.virtual_network.id
   subnet_id = azurerm_subnet.default_subnet.id

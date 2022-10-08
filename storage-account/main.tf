@@ -28,14 +28,14 @@ resource "azurerm_role_assignment" "st_role_admin_sbdc" {
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
-#resource "azurerm_storage_data_lake_gen2_filesystem" "st_adls" {
-#  name               = "default"
-#  storage_account_id = azurerm_storage_account.syn_st.id
+resource "azurerm_storage_data_lake_gen2_filesystem" "st_adls" {
+  name               = "default2"
+  storage_account_id = azurerm_storage_account.syn_st.id
 
-#  depends_on = [
-#    azurerm_role_assignment.st_role_admin_sbdc
-#  ]
-#}
+  depends_on = [
+    azurerm_role_assignment.st_role_admin_sbdc
+  ]
+}
 
 # Virtual Network & Firewall configuration
 

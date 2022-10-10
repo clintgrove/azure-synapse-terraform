@@ -29,7 +29,7 @@ resource "azurerm_role_assignment" "st_role_admin_sbdc" {
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "st_adls" {
-  name               = "default"
+  name               = "def2"
   storage_account_id = azurerm_storage_account.syn_st.id
 
   depends_on = [
@@ -49,7 +49,7 @@ resource "azurerm_storage_account_network_rules" "firewall_rules" {
   bypass                     = var.firewall_bypass
 
   # Set network policies after Workspace has been created 
-   depends_on = [azurerm_synapse_workspace.syn_ws]
+  # depends_on = [azurerm_synapse_workspace.syn_ws]
 }
 
 # DNS Zones

@@ -49,7 +49,7 @@ resource "azurerm_storage_account_network_rules" "firewall_rules" {
   bypass                     = var.firewall_bypass
 
   # Set network policies after Workspace has been created 
-  # depends_on = [azurerm_synapse_workspace.syn_ws]
+   depends_on = [azurerm_synapse_workspace.syn_ws]
 }
 
 # DNS Zones
